@@ -1,4 +1,3 @@
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_aranzazu_v2/core/check_internet_widget.dart';
@@ -52,7 +51,6 @@ class _NewsScrollPageState extends State<NewsScrollPage> {
           }
           if (currentState is NewsError) {
             if (shouldResetFeed ?? false) {
-              print('hotdog');
               _bloc.add(FetchNews());
             }
             return ErrorBlocWidget();

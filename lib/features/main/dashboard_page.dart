@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:project_aranzazu_v2/features/events/presentation/pages/events_page.dart';
 import 'package:project_aranzazu_v2/features/news/presentation/pages/news_page.dart';
 
-class DashboardPage extends StatefulWidget {
+class CubertoBottomNavigationBar extends StatefulWidget {
   @override
-  _DashboardPageState createState() => _DashboardPageState();
+  CubertoBottomNavigationBarState createState() =>
+      CubertoBottomNavigationBarState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class CubertoBottomNavigationBarState
+    extends State<CubertoBottomNavigationBar> {
   int currentPage = 0;
   final _pageOptions = [
     new NewsPage(),

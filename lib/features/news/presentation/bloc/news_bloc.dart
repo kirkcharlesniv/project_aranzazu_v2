@@ -34,14 +34,12 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       try {
         if (currentState is NewsUnintialized) {
           final newsList = await _fetchNews(index);
-          print('fetches from news uninit');
           yield NewsLoaded(newsList: newsList, hasReachedMax: false);
         }
         if (currentState is NewsLoaded) {
           ++index;
 
           final newsList = await _fetchNews(index);
-          print('fetches from news loaded');
           yield newsList.isEmpty
               ? currentState.copyWith(hasReachedMax: true)
               : NewsLoaded(
@@ -50,11 +48,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
                 );
         }
       } catch (_) {
-        const Duration DEFAULT_INTERVAL = const Duration(seconds: 1);
-        Duration checkInterval = DEFAULT_INTERVAL;
-
         loadData() async* {
-          print('reloads data');
           yield NewsUnintialized();
           final newsList = await _fetchNews(index);
           yield NewsLoaded(newsList: newsList, hasReachedMax: false);
@@ -67,26 +61,21 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         DataConnectionChecker().onStatusChange.listen((status) {
           switch (status) {
             case DataConnectionStatus.connected:
-              print('Data connection is available.');
               loadData();
               break;
             case DataConnectionStatus.disconnected:
-              print('You are disconnected from the internet.');
               returnError();
               break;
           }
         });
       }
     }
-
-    samplefunc() {}
   }
 
   bool _hasReachedMax(NewsState state) =>
       state is NewsLoaded && state.hasReachedMax;
 
   Future<List<BuiltNews>> _fetchNews(int index) async {
-    print('fetch from index $index');
     final response = await httpClient.get(
         'http://aranzazushrine.ph/home/index.php/wp-json/capie/v1/news?page=$index');
 

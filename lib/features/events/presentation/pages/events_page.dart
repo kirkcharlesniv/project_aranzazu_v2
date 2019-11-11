@@ -1,11 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project_aranzazu_v2/features/events/model/built_events.dart';
 import 'package:project_aranzazu_v2/features/events/presentation/bloc/bloc.dart';
+import 'package:project_aranzazu_v2/features/events/presentation/widgets/build_events_page.dart';
 import 'package:project_aranzazu_v2/features/widgets/blocs/imports.dart';
-
-import 'event_detail.dart';
 
 class EventsPage extends StatefulWidget {
   @override
@@ -100,15 +97,16 @@ class _EventsPageState extends State<EventsPage> {
                     children: <Widget>[
                       Positioned.fill(
                         child: GestureDetector(
-                          // TODO: Add event detail
                           child: PageView.builder(
                             controller: controller,
                             scrollDirection: Axis.horizontal,
                             itemCount: currentState.eventsList.length,
                             itemBuilder: (context, index) {
                               bool active = index == currentPageValue.round();
-                              return _buildEventsPage(
-                                  currentState.eventsList[index], active);
+                              return EventsPageWidgetBuilder(
+                                event: currentState.eventsList[index],
+                                active: active,
+                              );
                             },
                           ),
                         ),
@@ -121,52 +119,6 @@ class _EventsPageState extends State<EventsPage> {
           }
           return Container();
         },
-      ),
-    );
-  }
-
-  _buildEventsPage(BuiltEvents event, bool active) {
-    final double blur = active ? 30 : 0;
-    final double offset = active ? 20 : 0;
-    final double top = active ? 30 : 180;
-
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => EventDetail(
-                      event: event,
-                    )));
-      },
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeOutQuint,
-        margin: EdgeInsets.only(top: top, bottom: 50, right: 30),
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Hero(
-              tag: "${event.event}.${event.image}",
-              child: CachedNetworkImage(
-                imageUrl: event.image,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => Container(
-                    color: Colors.white,
-                    child: Center(child: CircularProgressIndicator())),
-              ),
-            ),
-          ),
-        ),
-        decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(20), boxShadow: [
-          BoxShadow(
-              color: Colors.black87,
-              blurRadius: blur,
-              offset: Offset(offset, offset))
-        ]),
       ),
     );
   }

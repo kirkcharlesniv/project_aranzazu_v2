@@ -38,7 +38,6 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
           return BuiltEvents.fromJson(json.encode(rawPost));
         }).toList();
       } catch (_) {
-        print(_);
         throw Exception();
       }
     } else {

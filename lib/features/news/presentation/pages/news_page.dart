@@ -20,7 +20,6 @@ class NewsPage extends StatelessWidget {
             color: Colors.black,
           ),
           onPressed: () {
-            // TODO: Implement search feature
             showSearch(
                 context: context,
                 delegate: NewsSearch(BlocProvider.of<SearchBloc>(context)));

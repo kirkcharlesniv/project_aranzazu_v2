@@ -5,7 +5,6 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:project_aranzazu_v2/features/events/presentation/bloc/events_bloc.dart';
 import 'package:project_aranzazu_v2/features/events/presentation/bloc/events_event.dart';
 import 'package:project_aranzazu_v2/features/news/presentation/bloc/news_bloc.dart';
-import 'package:project_aranzazu_v2/features/news/presentation/bloc/news_event.dart';
 import 'package:http/http.dart' as http;
 import 'package:project_aranzazu_v2/features/news_search/presentation/bloc/bloc.dart';
 

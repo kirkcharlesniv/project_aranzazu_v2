@@ -73,7 +73,6 @@ class NewsSearch extends SearchDelegate<String> {
       builder: (BuildContext context, SearchState state) {
         final currentState = state;
         if (currentState is SearchUninitialized) {
-          // TODO: Add a better error widget
           return Container();
         }
         if (currentState is SearchLoading) {

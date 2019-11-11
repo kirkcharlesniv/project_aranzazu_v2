@@ -57,7 +57,7 @@ class OnboardingAlternative extends StatelessWidget {
 
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) {
-                  return DashboardPage();
+                  return CubertoBottomNavigationBar();
                 }),
               );
             },

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_aranzazu_v2/features/main/dashboard_page.dart';
 import 'package:project_aranzazu_v2/features/main/on_boarding_alt.dart';
+import 'package:project_aranzazu_v2/features/widgets/blocs/error.dart';
+import 'package:project_aranzazu_v2/features/widgets/blocs/imports.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyHome extends StatelessWidget {
@@ -13,22 +15,15 @@ class MyHome extends StatelessWidget {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
           case ConnectionState.waiting:
-            return Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
+            return Scaffold(body: UninitializedBlocWidget());
           default:
             if (!snapshot.hasError) {
               return snapshot.data.getBool("welcome") != null
-                  ? new DashboardPage()
+                  ? new CubertoBottomNavigationBar()
                   : new OnboardingAlternative();
             } else {
-              print(snapshot.error);
               return new Scaffold(
-                body: Center(
-                  child: Text(snapshot.error),
-                ),
+                body: ErrorBlocWidget(),
               );
             }
         }

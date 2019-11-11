@@ -32,8 +32,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) async* {
     final currentState = state;
     if (event is FetchSearch && !_hasReachedMax(currentState)) {
-      // TODO: Make a reset search, clear all news list.
-      print(event.shouldResetSearch ?? false);
       if (event.shouldResetSearch ?? false) {
         yield SearchUninitialized();
       }
@@ -63,11 +61,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                 );
         }
       } catch (_, __) {
-        const Duration DEFAULT_INTERVAL = const Duration(seconds: 1);
-        Duration checkInterval = DEFAULT_INTERVAL;
-
         loadData() async* {
-          print('reloads data');
           yield SearchUninitialized();
           final newsList = await _fetchSearchNews(index, event.query);
           yield SearchLoaded(newsList: newsList, hasReachedMax: false);
@@ -80,11 +74,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         DataConnectionChecker().onStatusChange.listen((status) {
           switch (status) {
             case DataConnectionStatus.connected:
-              print('Data connection is available.');
               loadData();
               break;
             case DataConnectionStatus.disconnected:
-              print('You are disconnected from the internet.');
               returnError();
               break;
           }
