@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:project_aranzazu_v2/features/news_search/presentation/bloc/bloc.dart';
 
 import 'features/main/my_home.dart';
+import 'features/maps/presentation/bloc/bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<EventsBloc>(
               builder: (context) =>
                   EventsBloc(httpClient: httpClient)..add(FetchEvents())),
+          BlocProvider<MapsBloc>(
+              builder: (context) =>
+                  MapsBloc(httpClient: httpClient)..add(FetchMapsMarkers())),
         ],
         child: MyHome(),
       ),

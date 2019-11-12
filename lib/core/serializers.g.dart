@@ -8,6 +8,7 @@ part of serializers;
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(BuiltEvents.serializer)
+      ..add(BuiltMarkers.serializer)
       ..add(BuiltNews.serializer)
       ..add(BuiltNewsBody.serializer))
     .build();
