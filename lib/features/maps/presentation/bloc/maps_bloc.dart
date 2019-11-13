@@ -23,7 +23,7 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
       try {
         yield MapsLoading();
         final response =
-            await httpClient.get('https://api.myjson.com/bins/8ro82');
+            await httpClient.get('https://api.myjson.com/bins/mc0jq');
 
         if (response.statusCode == 200) {
           final mapsSet = await _fetchMapsMarkers(response);

@@ -23,7 +23,7 @@ class MarkerDetail extends StatelessWidget {
                 marker.msk,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 15,
                     color: Colors.white),
               ),
               background: Image.network(

@@ -16,7 +16,7 @@ class CubertoBottomNavigationBarState
   final _pageOptions = [
     NewsPage(),
     MapPage(),
-    BibleScreen(),
+    // BibleScreen(),
     EventsPage(),
   ];
 
@@ -40,10 +40,10 @@ class CubertoBottomNavigationBarState
             title: "MSKS",
             tabColor: Colors.pink,
           ),
-          TabData(
-              iconData: Icons.import_contacts,
-              title: "Bible",
-              tabColor: Colors.amber),
+          // TabData(
+          //     iconData: Icons.import_contacts,
+          //     title: "Bible",
+          //     tabColor: Colors.amber),
           TabData(
             iconData: Icons.calendar_today,
             title: "Events",
@@ -56,21 +56,6 @@ class CubertoBottomNavigationBarState
           });
         },
       ),
-    );
-  }
-}
-
-class BibleScreen extends StatefulWidget {
-  @override
-  _BibleScreenState createState() => _BibleScreenState();
-}
-
-class _BibleScreenState extends State<BibleScreen> {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: Add bible api integration
-    return Scaffold(
-      body: Container(),
     );
   }
 }
