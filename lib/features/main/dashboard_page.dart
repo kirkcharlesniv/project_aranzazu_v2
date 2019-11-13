@@ -16,7 +16,7 @@ class CubertoBottomNavigationBarState
   final _pageOptions = [
     NewsPage(),
     MapPage(),
-    BibleScreen(),
+    // BibleScreen(),
     EventsPage(),
   ];
 
@@ -40,10 +40,10 @@ class CubertoBottomNavigationBarState
             title: "MSKS",
             tabColor: Colors.pink,
           ),
-          TabData(
-              iconData: Icons.import_contacts,
-              title: "Bible",
-              tabColor: Colors.amber),
+          // TabData(
+          //     iconData: Icons.import_contacts,
+          //     title: "Bible",
+          //     tabColor: Colors.amber),
           TabData(
             iconData: Icons.calendar_today,
             title: "Events",
