@@ -44,12 +44,15 @@ class _GoogleMapsPageViewState extends State<GoogleMapsPageView> {
                 widget.mapsList[page].zoom);
           },
           itemBuilder: (context, index) {
+            bool _active = index == currentPageValue.round();
+
             return GoogleMapCard(
               marker: widget.mapsList[index],
+              active: _active,
             );
           },
         ),
-        height: MediaQuery.of(context).size.height * 0.2,
+        height: MediaQuery.of(context).size.height * 0.35,
       ),
     );
   }
