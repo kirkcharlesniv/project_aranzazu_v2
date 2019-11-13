@@ -38,25 +38,13 @@ class GoogleMapCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Hero(
-                tag: marker.msk,
-                child: Material(
-                  type: MaterialType.transparency,
-                  child: Text(
-                    marker.msk,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ),
+              Text(
+                marker.msk,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-              Hero(
-                tag: marker.location,
-                child: Material(
-                  type: MaterialType.transparency,
-                  child: Text(
-                    marker.location,
-                    style: TextStyle(color: Colors.grey, fontSize: 15),
-                  ),
-                ),
+              Text(
+                marker.location,
+                style: TextStyle(color: Colors.grey, fontSize: 15),
               )
             ],
           ),

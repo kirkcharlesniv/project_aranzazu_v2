@@ -19,10 +19,10 @@ class MyHome extends StatelessWidget {
           default:
             if (!snapshot.hasError) {
               return snapshot.data.getBool("welcome") != null
-                  ? new CubertoBottomNavigationBar()
-                  : new OnboardingAlternative();
+                  ? CubertoBottomNavigationBar()
+                  : OnboardingAlternative();
             } else {
-              return new Scaffold(
+              return Scaffold(
                 body: ErrorBlocWidget(),
               );
             }
