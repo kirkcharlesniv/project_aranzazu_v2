@@ -15,52 +15,36 @@ class _EventDetailState extends State<EventDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Hero(
-            tag: "${widget.event.event}.${widget.event.image}",
-            child: Container(
-              child: ShaderMask(
-                shaderCallback: (rect) {
-                  return LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.black,
-                      Colors.transparent,
-                      Colors.transparent,
-                      Colors.black
-                    ],
-                  ).createShader(
-                      Rect.fromLTRB(0, 0, rect.width, rect.height + 10));
-                },
-                blendMode: BlendMode.darken,
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: Image.network(
-                    widget.event.image,
-                    fit: BoxFit.cover,
-                  ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            expandedHeight: 300.0,
+            floating: false,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              title: Text(widget.event.event,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  )),
+              background: Hero(
+                tag: "${widget.event.event}.${widget.event.image}",
+                child: Image.network(
+                  widget.event.image,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
-          SingleChildScrollView(
-            child: SafeArea(
+          SliverToBoxAdapter(
+            child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   children: <Widget>[
-                    EventDetailAppBar(
-                      event: widget.event,
-                    ),
-                    EventDetailButtons(
-                      key: Key(widget.event.event),
-                    ),
                     Text(
                       widget.event.description,
-                      style: TextStyle(color: Colors.white),
                     ),
                   ],
                 ),
