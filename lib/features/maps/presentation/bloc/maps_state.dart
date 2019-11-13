@@ -23,7 +23,9 @@ class MapsLoading extends MapsState {
 
 class MapsLoaded extends MapsState {
   final Set<Marker> mapsSet;
-  MapsLoaded({this.mapsSet});
+  final List<BuiltMarkers> mapsList;
+
+  MapsLoaded({this.mapsSet, this.mapsList});
 
   @override
   List<Object> get props => [mapsSet];
