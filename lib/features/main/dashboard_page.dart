@@ -1,6 +1,7 @@
 import 'package:cuberto_bottom_bar/cuberto_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:project_aranzazu_v2/features/events/presentation/pages/events_page.dart';
+import 'package:project_aranzazu_v2/features/maps/presentation/pages/map_page.dart';
 import 'package:project_aranzazu_v2/features/news/presentation/pages/news_page.dart';
 
 class CubertoBottomNavigationBar extends StatefulWidget {
@@ -13,10 +14,10 @@ class CubertoBottomNavigationBarState
     extends State<CubertoBottomNavigationBar> {
   int currentPage = 0;
   final _pageOptions = [
-    new NewsPage(),
-    new MapScreen(),
-    new BibleScreen(),
-    new EventsPage(),
+    NewsPage(),
+    MapPage(),
+    // BibleScreen(),
+    EventsPage(),
   ];
 
   @override
@@ -39,10 +40,10 @@ class CubertoBottomNavigationBarState
             title: "MSKS",
             tabColor: Colors.pink,
           ),
-          TabData(
-              iconData: Icons.import_contacts,
-              title: "Bible",
-              tabColor: Colors.amber),
+          // TabData(
+          //     iconData: Icons.import_contacts,
+          //     title: "Bible",
+          //     tabColor: Colors.amber),
           TabData(
             iconData: Icons.calendar_today,
             title: "Events",
@@ -55,38 +56,6 @@ class CubertoBottomNavigationBarState
           });
         },
       ),
-    );
-  }
-}
-
-class MapScreen extends StatefulWidget {
-  @override
-  _MapScreenState createState() => _MapScreenState();
-}
-
-class _MapScreenState extends State<MapScreen> {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: Add Maps
-    return Scaffold(
-      body: Container(
-        color: Colors.black,
-      ),
-    );
-  }
-}
-
-class BibleScreen extends StatefulWidget {
-  @override
-  _BibleScreenState createState() => _BibleScreenState();
-}
-
-class _BibleScreenState extends State<BibleScreen> {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: Add bible api integration
-    return Scaffold(
-      body: Container(),
     );
   }
 }

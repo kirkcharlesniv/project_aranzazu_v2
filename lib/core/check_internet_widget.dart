@@ -34,7 +34,6 @@ class _CheckInternetWidgetState extends State<CheckInternetWidget> {
       switch (status) {
         case DataConnectionStatus.connected:
           if (!alreadyDispatchedFetch) {
-            // _bloc.add(FetchNews());
             widget.func();
           }
           if (hasDisconnectedEarlier && !alreadyShownSuccess) {

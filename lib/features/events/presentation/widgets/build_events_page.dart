@@ -17,11 +17,13 @@ class EventsPageWidgetBuilder extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => EventDetail(
-                      event: event,
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (context) => EventDetail(
+              event: event,
+            ),
+          ),
+        );
       },
       child: AnimatedContainer(
         duration: Duration(milliseconds: 500),
@@ -35,6 +37,11 @@ class EventsPageWidgetBuilder extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               child: Container(
                 color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  // TODO: Add a better loading widget.
+                  child: CircularProgressIndicator(),
+                ),
               ),
             ),
           ),

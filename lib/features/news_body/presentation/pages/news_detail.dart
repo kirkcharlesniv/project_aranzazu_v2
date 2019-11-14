@@ -34,7 +34,6 @@ class NewsDetailItem extends StatefulWidget {
 
 class _NewsDetailItemState extends State<NewsDetailItem> {
   NewsBodyBloc bloc;
-
   @override
   void initState() {
     super.initState();
