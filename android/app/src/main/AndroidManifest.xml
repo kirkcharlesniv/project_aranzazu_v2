@@ -7,8 +7,8 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="project_aranzazu_v2"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Viva Aranzazu!"
+        android:icon="@mipmap/launcher_icon">
         <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyDGuG7AVmKFPMfn5DQHrHHujnWtSP-M16g"/>
         <activity
