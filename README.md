@@ -1,3 +1,3 @@
 # Viva Aranzazu!
 
-A new Flutter project.
+A new flutter project.
