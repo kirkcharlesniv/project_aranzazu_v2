@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
+import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
 import 'package:project_aranzazu_v2/features/maps/models/built_markers.dart';
@@ -33,10 +34,35 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
           throw Exception();
         }
       } catch (_, __) {
-        // TODO: Implement Data Connection Checker
-        print(_);
-        print(__);
-        yield MapsError();
+        loadData() async* {
+          yield MapsUninitialized();
+          yield MapsLoading();
+          final response =
+              await httpClient.get('https://api.myjson.com/bins/1bn5h2');
+
+          if (response.statusCode == 200) {
+            final mapsSet = await _fetchMapsMarkers(response);
+            final mapsList = await _fetchMapsList(response);
+            yield MapsLoaded(mapsSet: mapsSet, mapsList: mapsList);
+          } else {
+            throw Exception();
+          }
+        }
+
+        returnError() async* {
+          yield MapsError();
+        }
+
+        DataConnectionChecker().onStatusChange.listen((status) {
+          switch (status) {
+            case DataConnectionStatus.connected:
+              loadData();
+              break;
+            case DataConnectionStatus.disconnected:
+              returnError();
+              break;
+          }
+        });
       }
     }
   }

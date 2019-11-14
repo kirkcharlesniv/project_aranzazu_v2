@@ -43,7 +43,6 @@ class _NewsScrollPageState extends State<NewsScrollPage>
 
   @override
   Widget build(BuildContext context) {
-    print('rebuilds');
     return CheckInternetWidget(
       widget: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
