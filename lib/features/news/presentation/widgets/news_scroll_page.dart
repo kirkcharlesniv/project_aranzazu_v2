@@ -12,8 +12,7 @@ class NewsScrollPage extends StatefulWidget {
   _NewsScrollPageState createState() => _NewsScrollPageState();
 }
 
-class _NewsScrollPageState extends State<NewsScrollPage>
-    with AutomaticKeepAliveClientMixin {
+class _NewsScrollPageState extends State<NewsScrollPage> {
   final ScrollController _scrollController = ScrollController();
   final double _scrollThreshold = 200.0;
   NewsBloc _bloc;
@@ -80,7 +79,4 @@ class _NewsScrollPageState extends State<NewsScrollPage>
       },
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

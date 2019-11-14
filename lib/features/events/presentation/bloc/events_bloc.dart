@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
+import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:project_aranzazu_v2/features/events/model/built_events.dart';
 import './bloc.dart';
 import 'package:http/http.dart' as http;
@@ -23,7 +24,27 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
         final events = await _fetchEvents();
         yield EventsLoaded(eventsList: events);
       } catch (_, __) {
-        yield EventsError();
+        loadData() async* {
+          yield EventsUninitialized();
+          yield EventsLoading();
+          final events = await _fetchEvents();
+          yield EventsLoaded(eventsList: events);
+        }
+
+        returnError() async* {
+          yield EventsError();
+        }
+
+        DataConnectionChecker().onStatusChange.listen((status) {
+          switch (status) {
+            case DataConnectionStatus.connected:
+              loadData();
+              break;
+            case DataConnectionStatus.disconnected:
+              returnError();
+              break;
+          }
+        });
       }
     }
   }

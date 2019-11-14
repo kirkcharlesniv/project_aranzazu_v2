@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_aranzazu_v2/features/events/model/built_events.dart';
-import 'package:project_aranzazu_v2/features/events/presentation/widgets/event_detail_app_bar.dart';
-import 'package:project_aranzazu_v2/features/events/presentation/widgets/event_detail_buttons.dart';
 
 class EventDetail extends StatefulWidget {
   final BuiltEvents event;
