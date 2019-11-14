@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_aranzazu_v2/features/main/dashboard_page.dart';
+import 'package:project_aranzazu_v2/features/main/my_home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingAlternative extends StatelessWidget {
@@ -57,7 +57,7 @@ class OnboardingAlternative extends StatelessWidget {
 
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) {
-                  return CubertoBottomNavigationBar();
+                  return MyHome();
                 }),
               );
             },
