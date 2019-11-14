@@ -9,8 +9,8 @@ class DetailAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      leading: new IconButton(
-        icon: new Icon(Icons.arrow_back, color: Colors.white),
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back, color: Colors.white),
         onPressed: () => Navigator.of(context).pop(),
       ),
       title: Text(news.title),

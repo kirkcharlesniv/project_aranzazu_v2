@@ -93,25 +93,17 @@ class _EventsPageState extends State<EventsPage> {
                 ),
                 Flexible(
                   flex: 3,
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(
-                        child: GestureDetector(
-                          child: PageView.builder(
-                            controller: controller,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: currentState.eventsList.length,
-                            itemBuilder: (context, index) {
-                              bool active = index == currentPageValue.round();
-                              return EventsPageWidgetBuilder(
-                                event: currentState.eventsList[index],
-                                active: active,
-                              );
-                            },
-                          ),
-                        ),
-                      )
-                    ],
+                  child: PageView.builder(
+                    controller: controller,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: currentState.eventsList.length,
+                    itemBuilder: (context, index) {
+                      bool active = index == currentPageValue.round();
+                      return EventsPageWidgetBuilder(
+                        event: currentState.eventsList[index],
+                        active: active,
+                      );
+                    },
                   ),
                 ),
               ],

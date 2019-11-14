@@ -12,7 +12,8 @@ class NewsScrollPage extends StatefulWidget {
   _NewsScrollPageState createState() => _NewsScrollPageState();
 }
 
-class _NewsScrollPageState extends State<NewsScrollPage> {
+class _NewsScrollPageState extends State<NewsScrollPage>
+    with AutomaticKeepAliveClientMixin {
   final ScrollController _scrollController = ScrollController();
   final double _scrollThreshold = 200.0;
   NewsBloc _bloc;
@@ -42,6 +43,7 @@ class _NewsScrollPageState extends State<NewsScrollPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('rebuilds');
     return CheckInternetWidget(
       widget: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
@@ -79,4 +81,7 @@ class _NewsScrollPageState extends State<NewsScrollPage> {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
