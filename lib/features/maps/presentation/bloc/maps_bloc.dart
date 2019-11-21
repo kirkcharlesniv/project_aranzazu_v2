@@ -33,9 +33,6 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
           throw Exception();
         }
       } catch (_, __) {
-        // TODO: Implement Data Connection Checker
-        print(_);
-        print(__);
         yield MapsError();
       }
     }
@@ -63,7 +60,7 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
   }
 
   Future<List<BuiltMarkers>> _fetchMapsList(Response response) async {
-    final mapsList = json.decode(response.body) as List;
+    final mapsList = json.decode(utf8.decode(response.bodyBytes)) as List;
     try {
       return mapsList.map((rawPost) {
         rawPost['lat'] = double.parse(rawPost['lat']);

@@ -11,7 +11,6 @@ class EventsPage extends StatefulWidget {
 
 class _EventsPageState extends State<EventsPage> {
   EventsBloc _bloc;
-
   double currentPageValue = 0.0;
 
   @override
@@ -39,6 +38,7 @@ class _EventsPageState extends State<EventsPage> {
             if (currentState.eventsList.isEmpty) {
               return EmptyBlocWidget();
             }
+
             PageController controller =
                 PageController(initialPage: 0, viewportFraction: 0.8);
             controller.addListener(() {
