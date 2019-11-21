@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:project_aranzazu_v2/features/events/model/built_events.dart';
 import './bloc.dart';
 import 'package:http/http.dart' as http;
@@ -10,6 +11,7 @@ import 'package:meta/meta.dart';
 class EventsBloc extends Bloc<EventsEvent, EventsState> {
   final http.Client httpClient;
   EventsBloc({@required this.httpClient});
+  final DateTime now = DateTime.now();
 
   @override
   EventsState get initialState => EventsUninitialized();
@@ -22,13 +24,14 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
       try {
         yield EventsLoading();
         final events = await _fetchEvents();
-        yield EventsLoaded(eventsList: events);
+        yield EventsLoaded(eventsList: filterEvents(events));
       } catch (_, __) {
         loadData() async* {
           yield EventsUninitialized();
           yield EventsLoading();
           final events = await _fetchEvents();
-          yield EventsLoaded(eventsList: events);
+
+          yield EventsLoaded(eventsList: filterEvents(events));
         }
 
         returnError() async* {
@@ -47,6 +50,13 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
         });
       }
     }
+  }
+
+  List<BuiltEvents> filterEvents(List<BuiltEvents> events) {
+    return events
+        .where((data) => DateTime.parse(Jiffy(data.date, 'MMMM dd, y').format())
+            .isAfter(now))
+        .toList();
   }
 
   Future<List<BuiltEvents>> _fetchEvents() async {
