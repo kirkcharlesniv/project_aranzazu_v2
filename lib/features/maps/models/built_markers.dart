@@ -4,7 +4,10 @@ import 'dart:convert';
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:project_aranzazu_v2/core/serializers.dart';
+
+import 'built_days.dart';
 
 part 'built_markers.g.dart';
 
@@ -16,6 +19,11 @@ abstract class BuiltMarkers
   double get lat;
   double get long;
   double get zoom;
+  @nullable
+  String get description;
+  @nullable
+  String get imageUrl;
+  BuiltList<BuiltDays> get weekly_schedules;
 
   BuiltMarkers._();
 

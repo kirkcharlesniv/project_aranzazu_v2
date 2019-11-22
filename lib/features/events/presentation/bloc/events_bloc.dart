@@ -60,6 +60,7 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
   }
 
   Future<List<BuiltEvents>> _fetchEvents() async {
+    // TODO: Replace it with a CAPIE in DSPNSDA.
     final response = await httpClient.get('https://api.myjson.com/bins/108s5w');
 
     if (response.statusCode == 200) {

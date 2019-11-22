@@ -39,7 +39,6 @@ class EventsPageWidgetBuilder extends StatelessWidget {
                 color: Colors.white,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  // TODO: Add a better loading widget.
                   child: CircularProgressIndicator(),
                 ),
               ),
