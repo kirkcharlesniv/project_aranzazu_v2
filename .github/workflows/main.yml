@@ -17,6 +17,7 @@ jobs:
       with:
         flutter-version: '1.10.7'
         channel: 'dev'
+    - run: flutter upgrade
     - run: flutter clean
     - run: flutter pub get
     - run: flutter build apk --release --split-per-abi
