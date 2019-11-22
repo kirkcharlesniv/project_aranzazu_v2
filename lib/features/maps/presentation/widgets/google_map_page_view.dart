@@ -52,7 +52,7 @@ class _GoogleMapsPageViewState extends State<GoogleMapsPageView> {
             );
           },
         ),
-        height: MediaQuery.of(context).size.height * 0.35,
+        height: MediaQuery.of(context).size.height * 0.325,
       ),
     );
   }

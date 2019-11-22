@@ -23,8 +23,8 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
     if (event is FetchMapsMarkers) {
       try {
         yield MapsLoading();
-        final response =
-            await httpClient.get('https://api.myjson.com/bins/1bn5h2');
+        final response = await httpClient.get(
+            'http://aranzazushrine.ph/home/index.php/wp-json/capie/v1/maps');
 
         if (response.statusCode == 200) {
           final mapsSet = await _fetchMapsMarkers(response);
@@ -37,8 +37,8 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
         loadData() async* {
           yield MapsUninitialized();
           yield MapsLoading();
-          final response =
-              await httpClient.get('https://api.myjson.com/bins/1bn5h2');
+          final response = await httpClient.get(
+              'http://aranzazushrine.ph/home/index.php/wp-json/capie/v1/maps');
 
           if (response.statusCode == 200) {
             final mapsSet = await _fetchMapsMarkers(response);

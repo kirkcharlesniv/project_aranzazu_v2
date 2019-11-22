@@ -33,8 +33,23 @@ class _$BuiltMarkersSerializer implements StructuredSerializer<BuiltMarkers> {
       serializers.serialize(object.long, specifiedType: const FullType(double)),
       'zoom',
       serializers.serialize(object.zoom, specifiedType: const FullType(double)),
+      'weekly_schedules',
+      serializers.serialize(object.weekly_schedules,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(BuiltDays)])),
     ];
-
+    if (object.description != null) {
+      result
+        ..add('description')
+        ..add(serializers.serialize(object.description,
+            specifiedType: const FullType(String)));
+    }
+    if (object.imageUrl != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(object.imageUrl,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -73,6 +88,20 @@ class _$BuiltMarkersSerializer implements StructuredSerializer<BuiltMarkers> {
           result.zoom = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
+        case 'description':
+          result.description = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'weekly_schedules':
+          result.weekly_schedules.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(BuiltDays)]))
+              as BuiltList<dynamic>);
+          break;
       }
     }
 
@@ -93,6 +122,12 @@ class _$BuiltMarkers extends BuiltMarkers {
   final double long;
   @override
   final double zoom;
+  @override
+  final String description;
+  @override
+  final String imageUrl;
+  @override
+  final BuiltList<BuiltDays> weekly_schedules;
 
   factory _$BuiltMarkers([void Function(BuiltMarkersBuilder) updates]) =>
       (new BuiltMarkersBuilder()..update(updates)).build();
@@ -103,7 +138,10 @@ class _$BuiltMarkers extends BuiltMarkers {
       this.location,
       this.lat,
       this.long,
-      this.zoom})
+      this.zoom,
+      this.description,
+      this.imageUrl,
+      this.weekly_schedules})
       : super._() {
     if (coordinator == null) {
       throw new BuiltValueNullFieldError('BuiltMarkers', 'coordinator');
@@ -123,6 +161,9 @@ class _$BuiltMarkers extends BuiltMarkers {
     if (zoom == null) {
       throw new BuiltValueNullFieldError('BuiltMarkers', 'zoom');
     }
+    if (weekly_schedules == null) {
+      throw new BuiltValueNullFieldError('BuiltMarkers', 'weekly_schedules');
+    }
   }
 
   @override
@@ -141,7 +182,10 @@ class _$BuiltMarkers extends BuiltMarkers {
         location == other.location &&
         lat == other.lat &&
         long == other.long &&
-        zoom == other.zoom;
+        zoom == other.zoom &&
+        description == other.description &&
+        imageUrl == other.imageUrl &&
+        weekly_schedules == other.weekly_schedules;
   }
 
   @override
@@ -149,11 +193,17 @@ class _$BuiltMarkers extends BuiltMarkers {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, coordinator.hashCode), msk.hashCode),
-                    location.hashCode),
-                lat.hashCode),
-            long.hashCode),
-        zoom.hashCode));
+                $jc(
+                    $jc(
+                        $jc(
+                            $jc($jc($jc(0, coordinator.hashCode), msk.hashCode),
+                                location.hashCode),
+                            lat.hashCode),
+                        long.hashCode),
+                    zoom.hashCode),
+                description.hashCode),
+            imageUrl.hashCode),
+        weekly_schedules.hashCode));
   }
 
   @override
@@ -164,7 +214,10 @@ class _$BuiltMarkers extends BuiltMarkers {
           ..add('location', location)
           ..add('lat', lat)
           ..add('long', long)
-          ..add('zoom', zoom))
+          ..add('zoom', zoom)
+          ..add('description', description)
+          ..add('imageUrl', imageUrl)
+          ..add('weekly_schedules', weekly_schedules))
         .toString();
   }
 }
@@ -197,6 +250,20 @@ class BuiltMarkersBuilder
   double get zoom => _$this._zoom;
   set zoom(double zoom) => _$this._zoom = zoom;
 
+  String _description;
+  String get description => _$this._description;
+  set description(String description) => _$this._description = description;
+
+  String _imageUrl;
+  String get imageUrl => _$this._imageUrl;
+  set imageUrl(String imageUrl) => _$this._imageUrl = imageUrl;
+
+  ListBuilder<BuiltDays> _weekly_schedules;
+  ListBuilder<BuiltDays> get weekly_schedules =>
+      _$this._weekly_schedules ??= new ListBuilder<BuiltDays>();
+  set weekly_schedules(ListBuilder<BuiltDays> weekly_schedules) =>
+      _$this._weekly_schedules = weekly_schedules;
+
   BuiltMarkersBuilder();
 
   BuiltMarkersBuilder get _$this {
@@ -207,6 +274,9 @@ class BuiltMarkersBuilder
       _lat = _$v.lat;
       _long = _$v.long;
       _zoom = _$v.zoom;
+      _description = _$v.description;
+      _imageUrl = _$v.imageUrl;
+      _weekly_schedules = _$v.weekly_schedules?.toBuilder();
       _$v = null;
     }
     return this;
@@ -227,14 +297,30 @@ class BuiltMarkersBuilder
 
   @override
   _$BuiltMarkers build() {
-    final _$result = _$v ??
-        new _$BuiltMarkers._(
-            coordinator: coordinator,
-            msk: msk,
-            location: location,
-            lat: lat,
-            long: long,
-            zoom: zoom);
+    _$BuiltMarkers _$result;
+    try {
+      _$result = _$v ??
+          new _$BuiltMarkers._(
+              coordinator: coordinator,
+              msk: msk,
+              location: location,
+              lat: lat,
+              long: long,
+              zoom: zoom,
+              description: description,
+              imageUrl: imageUrl,
+              weekly_schedules: weekly_schedules.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'weekly_schedules';
+        weekly_schedules.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'BuiltMarkers', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

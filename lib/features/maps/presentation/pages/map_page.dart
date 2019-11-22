@@ -35,6 +35,11 @@ class _MapPageState extends State<MapPage> {
             if (currentState is MapsUninitialized) {
               return UninitializedBlocWidget();
             }
+
+            if (currentState is MapsLoading) {
+              return UninitializedBlocWidget();
+            }
+
             if (currentState is MapsError) {
               return ErrorBlocWidget();
             }

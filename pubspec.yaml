@@ -45,7 +45,8 @@ dependencies:
   timeago:
   flutter_widget_from_html:
   jiffy:
-    
+  dotted_border: ^1.0.3
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -37,7 +37,7 @@ class CubertoBottomNavigationBarState
           ),
           TabData(
             iconData: Icons.pin_drop,
-            title: "MSKS",
+            title: "MSKs",
             tabColor: Colors.pink,
           ),
           // TabData(
