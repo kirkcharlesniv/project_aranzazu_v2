@@ -176,7 +176,6 @@ class MarkerDetail extends StatelessWidget {
                                 itemCount: b.hour_schedules.length,
                                 itemBuilder: (context, index) {
                                   int hour = b.hour_schedules[index].hour;
-                                  int noon_fix = 1;
                                   String time = "AM";
 
                                   if (hour == 12) {

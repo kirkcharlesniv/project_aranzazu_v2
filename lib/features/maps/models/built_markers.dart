@@ -6,7 +6,6 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:project_aranzazu_v2/core/serializers.dart';
-import 'package:project_aranzazu_v2/features/maps/models/built_weekly_schedules.dart';
 
 import 'built_days.dart';
 
